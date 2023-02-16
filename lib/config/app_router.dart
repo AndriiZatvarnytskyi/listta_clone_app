@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/view/task_form_screen/task_form_screen.dart';
-import 'package:listta_clone_app/view/tasks_screen/tasks_screen.dart';
 
 import '../view/screen_view.dart';
 
@@ -27,12 +26,9 @@ class MainNavigation {
       //     ),
       //   );
       case MainNavigationRouteNames.addTask:
-        final selectedDay = settings.arguments as DateTime;
         return MaterialPageRoute(
           builder: (context) {
-            return TaskFormScreen(
-              selectedDays: selectedDay,
-            );
+            return const TaskFormScreen();
           },
         );
       default:

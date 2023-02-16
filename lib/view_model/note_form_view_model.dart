@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:listta_clone_app/domain/entity/task.dart';
 
 import '../domain/data_provider/box_manager.dart';
 import '../domain/entity/note.dart';
@@ -18,7 +17,6 @@ class NoteFormWidgetModel {
     await box.add(note);
     await BoxManager.instance.closeBox(box);
     Navigator.of(context).pop();
-    print(box);
   }
 }
 

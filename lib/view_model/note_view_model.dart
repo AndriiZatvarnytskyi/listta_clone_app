@@ -2,11 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:listta_clone_app/domain/entity/note.dart';
-import 'package:listta_clone_app/domain/entity/task.dart';
 import 'package:listta_clone_app/view/note_form_screen/note_form_screen.dart';
-import '../config/app_router.dart';
 import '../domain/data_provider/box_manager.dart';
-import '../view/task_form_screen/task_form_screen.dart';
 
 class NotesWidgetModel extends ChangeNotifier {
   late final Future<Box<Note>> _box;

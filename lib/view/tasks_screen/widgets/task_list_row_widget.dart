@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 
 class TasksListRowWidget extends StatelessWidget {
   final int indexInList;
+  final DateTime date;
   const TasksListRowWidget({
     super.key,
+    required this.date,
     required this.indexInList,
   });
 
@@ -13,6 +15,7 @@ class TasksListRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = TasksWidgetModelProvider.read(context)!.model;
     final task = model.tasks[indexInList];
+    final dateX = model.tasks[indexInList].date;
 
     final icon = task.isDone ? Icons.check_box : Icons.check_box_outline_blank;
     final style = task.isDone
@@ -34,15 +37,18 @@ class TasksListRowWidget extends StatelessWidget {
         model.deleteTask(indexInList);
       },
       direction: DismissDirection.endToStart,
-      child: ListTile(
-        //subtitle: Text(DateFormat('EEEE, d MMM, yyyy').format(task.date)),
-        title: Text(
-          task.text,
-          style: style,
-        ),
-        leading: Icon(icon),
-        onTap: () => model.doneToggle(indexInList),
-      ),
+      child: dateX.year == date.year &&
+              dateX.month == date.month &&
+              dateX.day == date.day
+          ? ListTile(
+              title: Text(
+                task.text,
+                style: style,
+              ),
+              leading: Icon(icon),
+              onTap: () => model.doneToggle(indexInList),
+            )
+          : Container(),
     );
   }
 }

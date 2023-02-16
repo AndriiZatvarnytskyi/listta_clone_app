@@ -1,12 +1,14 @@
-import 'dart:collection';
-import 'package:intl/intl.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
+import 'package:listta_clone_app/blocs/task_list_bloc/tasks_list_bloc.dart';
 import 'package:listta_clone_app/domain/helper/utils.dart';
-import 'package:listta_clone_app/view/task_form_screen/task_form_screen.dart';
-import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarTableWidget extends StatefulWidget {
+  const CalendarTableWidget({super.key});
+
   @override
   _CalendarTableWidgetState createState() => _CalendarTableWidgetState();
 }
@@ -14,20 +16,32 @@ class CalendarTableWidget extends StatefulWidget {
 class _CalendarTableWidgetState extends State<CalendarTableWidget> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   final DateTime _currentDay = DateTime.now();
-  DateTime _focusedDay = DateTime.now();
 
   DateTime? _selectedDay;
 
-  //bool weekNumbersVisible = true;
   StartingDayOfWeek startingDayOfWeek = StartingDayOfWeek.monday;
+
+  List<Event> _getEventsForDay(DateTime day, DateTime newDate) {
+    kEventSource.addAll({
+      newDate: [
+        const Event('Today\'s Event 1'),
+      ],
+      kToday: [
+        const Event('Today\'s Event 1'),
+      ],
+    });
+    return kEvents[day] ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TasksWidgetModelProvider(
-        model: TasksWidgetModel(),
-        child: Builder(builder: (context) {
-          return TableCalendar(
+    return BlocBuilder<CalendarBloc, CalendarState>(
+      builder: (context, state) {
+        // final model = TasksWidgetModelProvider.watch(context)?.model;
+        // final task = model!.tasks[1];
+        if (state.status.isSuccess) {
+          return Center(
+              child: TableCalendar(
             availableCalendarFormats: const {
               CalendarFormat.month: 'Місяць',
               CalendarFormat.week: 'Тиждень'
@@ -37,9 +51,10 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
               leftChevronVisible: false,
               rightChevronIcon: IconButton(
                   onPressed: () {
-                    TasksWidgetModelProvider.read(context)!
-                        .model
-                        .showForm(context);
+                    BlocProvider.of<CalendarBloc>(context).add(
+                      SelectFocusDate(focusDate: _currentDay),
+                    );
+                    _selectedDay = _currentDay;
                   },
                   icon: const Icon(Icons.today_rounded)),
               formatButtonDecoration: const BoxDecoration(
@@ -52,6 +67,8 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                 weekdayStyle: Theme.of(context).textTheme.headline5!.copyWith(
                     fontWeight: FontWeight.w400, color: Colors.black38)),
             calendarStyle: CalendarStyle(
+                // markerDecoration: BoxDecoration(color: Colors.red),
+                // markerSize: 25,
                 todayDecoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     shape: BoxShape.circle),
@@ -77,24 +94,29 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
             weekendDays: const [DateTime.saturday, DateTime.sunday],
             firstDay: kFirstDay,
             lastDay: kLastDay,
-            focusedDay: _focusedDay,
+            focusedDay: state.focusDate ?? _currentDay,
             calendarFormat: _calendarFormat,
+            locale: 'uk_UA',
+            // eventLoader: (day) {
+            //   return _getEventsForDay(day, model.tasks[0].date);
+            // },
             selectedDayPredicate: (day) {
               return isSameDay(_selectedDay, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
               if (!isSameDay(_selectedDay, selectedDay)) {
+                BlocProvider.of<CalendarBloc>(context).add(
+                  SelectFocusDate(focusDate: selectedDay),
+                );
+                BlocProvider.of<TaskListBloc>(context).add(
+                  SelectTaskDate(taskDate: selectedDay),
+                );
                 // Call `setState()` when updating the selected day
                 setState(() {
-                  TasksWidgetModelProvider.read(context)!
-                      .model
-                      .changeSelectedDay(selectedDay);
                   _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
                 });
               }
             },
-
             onFormatChanged: (format) {
               if (_calendarFormat != format) {
                 // Call `setState()` when updating calendar format
@@ -103,30 +125,13 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                 });
               }
             },
-            // onFormatChanged: (format) {
-            //   setState(() {
-            //     //_selectedDay = selectedDay;
-
-            //     _focusedDay = _currentDay;
-            //     _selectedDay = _currentDay;
-            //   });
-            // },
-            onPageChanged: (focusedDay) {
-              // No need to call `setState()` here
-              _focusedDay = focusedDay;
-            },
+          ));
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
           );
-        }),
-      ),
+        }
+      },
     );
   }
 }
-
-void backToToday(today, focusedDay) {
-  focusedDay = today;
-}
-
-// Copyright 2019 Aleksander Woźniak
-// SPDX-License-Identifier: Apache-2.0
-
-

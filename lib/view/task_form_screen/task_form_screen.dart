@@ -1,30 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
 import 'package:listta_clone_app/view_model/task_form_view_model.dart';
 import 'package:listta_clone_app/view/task_form_screen/widgets/task_form_widget.dart';
 
 class TaskFormScreen extends StatelessWidget {
-  final selectedDays;
-  TaskFormScreen({super.key, required this.selectedDays});
-
-  final _model = TaskFormWidgetModel();
-
-  // final dsdas =
-
-  @override
-  Widget build(BuildContext context) {
-    return TaskFormWidgetModelProvider(
-      model: _model,
-      child: _TaskFormScreenBody(
-        selectedDays: selectedDays,
-      ),
-    );
-  }
-}
-
-class _TaskFormScreenBody extends StatelessWidget {
-  var selectedDays;
-
-  _TaskFormScreenBody({required this.selectedDays});
+  const TaskFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +24,7 @@ class _TaskFormScreenBody extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Створити завдання $selectedDays',
+          'Створити завдання',
           style: Theme.of(context)
               .textTheme
               .bodyText2!
@@ -55,8 +36,10 @@ class _TaskFormScreenBody extends StatelessWidget {
         child: TaskFormWidget(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            TaskFormWidgetModelProvider.read(context)?.model.saveTask(context),
+        onPressed: () {
+          context.read<TaskCubit>().saveTask();
+          Navigator.pop(context);
+        },
         child: const Icon(Icons.done),
       ),
     );

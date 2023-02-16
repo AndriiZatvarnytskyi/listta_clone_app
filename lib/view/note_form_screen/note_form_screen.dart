@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:listta_clone_app/blocs/note_cubit/note_cubit.dart';
 import 'package:listta_clone_app/view/note_form_screen/widgets/note_description_form_widget.dart';
 import 'package:listta_clone_app/view_model/task_form_view_model.dart';
 import 'package:listta_clone_app/view/task_form_screen/widgets/task_form_widget.dart';
@@ -55,8 +57,11 @@ class _NoteFormScreenBody extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            NoteFormWidgetModelProvider.read(context)?.model.saveNote(context),
+        onPressed: () {
+          context.read<NoteCubit>().saveNote();
+          Navigator.pop(context);
+        },
+        // NoteFormWidgetModelProvider.read(context)?.model.saveNote(context),
         child: const Icon(Icons.done),
       ),
     );

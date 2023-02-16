@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/view/task_form_screen/task_form_screen.dart';
 import 'package:listta_clone_app/view/calendar_table_widget.dart';
 import 'package:listta_clone_app/view/tasks_screen/widgets/user_progres_widget.dart';
 import 'package:listta_clone_app/view_model/calendar_view_model.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 import 'package:listta_clone_app/view/tasks_screen/widgets/tasks_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({
@@ -85,6 +87,13 @@ class _TasksScreenState extends State<TasksScreen> {
                 const SizedBox(
                   height: 20,
                 ),
+
+                Padding(
+                    padding: EdgeInsets.all(20),
+                    child: BlocBuilder<CalendarBloc, CalendarState>(
+                      builder: (context, state) =>
+                          Text(state.focusDate.toString()),
+                    )),
 
                 Expanded(child: TasksWidget()),
                 // TasksWidgetModelProvider.watch(context)!.model.tasks.isNotEmpty

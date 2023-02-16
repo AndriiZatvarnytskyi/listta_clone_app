@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
-import '../config/app_router.dart';
 import '../domain/data_provider/box_manager.dart';
 import '../view/task_form_screen/task_form_screen.dart';
 
@@ -28,9 +27,8 @@ class TasksWidgetModel extends ChangeNotifier {
   }
 
   void showForm(BuildContext context) {
-    final selectedDays = DateTime.now();
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => TaskFormScreen(selectedDays: selectedDays)));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const TaskFormScreen()));
   }
 
   // Future<void> showTasks(BuildContext context, int groupIndex) async {

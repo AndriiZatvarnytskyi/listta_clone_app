@@ -6,7 +6,6 @@ ThemeData theme() {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black87,
           elevation: 3),
-      toggleableActiveColor: const Color.fromARGB(255, 65, 124, 233),
       elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor:
@@ -21,7 +20,6 @@ ThemeData theme() {
       primaryColorDark: const Color.fromARGB(255, 206, 167, 62),
       primaryColorLight: const Color.fromRGBO(255, 206, 167, 62),
       scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',
