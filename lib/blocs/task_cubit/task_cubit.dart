@@ -1,15 +1,13 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/domain/data_provider/box_manager.dart';
-import 'package:listta_clone_app/domain/entity/note.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
-import 'package:listta_clone_app/repository.dart';
 
 part 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   TaskCubit() : super(TaskInitial());
+
+  DateTime? selectedDays;
 
   var taskName = '';
   bool isDone = false;
@@ -26,4 +24,8 @@ class TaskCubit extends Cubit<TaskState> {
     await box.add(task);
     await BoxManager.instance.closeBox(box);
   }
+
+  // Future<void> _readTasksFromHive() async {
+  //   _tasks = (await _box).values.toList();
+  // }
 }

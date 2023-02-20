@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/note_cubit/note_cubit.dart';
 import 'package:listta_clone_app/view/note_form_screen/widgets/note_description_form_widget.dart';
-import 'package:listta_clone_app/view_model/task_form_view_model.dart';
-import 'package:listta_clone_app/view/task_form_screen/widgets/task_form_widget.dart';
 
 import '../../view_model/note_form_view_model.dart';
 import 'widgets/note_name_form_widget.dart';
@@ -43,7 +41,7 @@ class _NoteFormScreenBody extends StatelessWidget {
           'Нова нотатка',
           style: Theme.of(context)
               .textTheme
-              .headline3!
+              .displaySmall!
               .copyWith(fontWeight: FontWeight.w500, fontSize: 20),
         ),
       ),

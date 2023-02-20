@@ -7,6 +7,7 @@ part 'calendar_state.dart';
 class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
   CalendarBloc() : super(CalendarState()) {
     on<SelectFocusDate>(_focusDayChange);
+    on<CloseCalendar>(_closeCalendar);
   }
 
   void _focusDayChange(
@@ -15,10 +16,31 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     try {
       emit(
         state.copyWith(
-          status: CalendarStatus.success,
+          status: CalendarStatus.open,
           focusDate: event.focusDate,
         ),
       );
+    } catch (error, stacktrace) {
+      print(stacktrace);
+      emit(state.copyWith(status: CalendarStatus.error));
+    }
+  }
+
+  void _closeCalendar(CloseCalendar event, Emitter<CalendarState> emit) async {
+    try {
+      if (state.status.isOpen) {
+        emit(
+          state.copyWith(
+            status: CalendarStatus.closed,
+          ),
+        );
+      } else if (state.status.isClosed) {
+        emit(
+          state.copyWith(
+            status: CalendarStatus.open,
+          ),
+        );
+      }
     } catch (error, stacktrace) {
       print(stacktrace);
       emit(state.copyWith(status: CalendarStatus.error));

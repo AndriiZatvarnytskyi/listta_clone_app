@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/view/notes_screen/widgets/notest_list_row_widget.dart';
-import 'package:listta_clone_app/view/tasks_screen/widgets/task_list_row_widget.dart';
-import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 
 import '../../../view_model/note_view_model.dart';
 
@@ -25,7 +23,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
         return NotesListRowWidget(indexInList: index);
       },
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(height: 1);
+        return Container(height: 0.5, color: Theme.of(context).hintColor);
       },
     );
   }

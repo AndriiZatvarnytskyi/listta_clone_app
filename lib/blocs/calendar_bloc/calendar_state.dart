@@ -1,10 +1,11 @@
 part of 'calendar_bloc.dart';
 
-enum CalendarStatus { initial, success, error, loading, selected }
+enum CalendarStatus { initial, open, closed, error, loading, selected }
 
 extension CalendarStatusX on CalendarStatus {
   bool get isInitial => this == CalendarStatus.initial;
-  bool get isSuccess => this == CalendarStatus.success;
+  bool get isOpen => this == CalendarStatus.open;
+  bool get isClosed => this == CalendarStatus.closed;
   bool get isError => this == CalendarStatus.error;
   bool get isLoading => this == CalendarStatus.loading;
   bool get isSelected => this == CalendarStatus.selected;
@@ -17,31 +18,25 @@ class InitialCalendar extends CalendarState {
 
 class CalendarState extends Equatable {
   CalendarState({
-    this.status = CalendarStatus.success,
+    this.status = CalendarStatus.open,
     dynamic focusDate,
-    dynamic haveTask,
-  })  : focusDate = focusDate ?? DateTime.now(),
-        haveTask = haveTask ?? true;
+  }) : focusDate = focusDate ?? DateTime.now();
 
-  final dynamic focusDate;
-  final dynamic haveTask;
+  final DateTime focusDate;
   final CalendarStatus status;
 
   @override
   List<Object?> get props => [
         status,
-        haveTask,
         focusDate,
       ];
 
   CalendarState copyWith({
     CalendarStatus? status,
     dynamic focusDate,
-    dynamic haveTask,
   }) {
     return CalendarState(
       focusDate: focusDate ?? this.focusDate,
-      haveTask: haveTask ?? this.haveTask,
       status: status ?? this.status,
     );
   }

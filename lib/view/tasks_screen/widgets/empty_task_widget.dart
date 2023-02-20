@@ -14,7 +14,7 @@ class EmptyTaskWidget extends StatelessWidget {
               'Ваш список порожній',
               style: Theme.of(context)
                   .textTheme
-                  .headline3!
+                  .displaySmall!
                   .copyWith(fontWeight: FontWeight.w500),
             ),
             const SizedBox(
@@ -22,9 +22,9 @@ class EmptyTaskWidget extends StatelessWidget {
             ),
             Text(
               'Натисність "+", щоб створити завдання',
-              style: Theme.of(context).textTheme.headline6!.copyWith(
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w400,
-                  color: Theme.of(context).primaryColor),
+                  color: Theme.of(context).hintColor),
             ),
           ],
         ),

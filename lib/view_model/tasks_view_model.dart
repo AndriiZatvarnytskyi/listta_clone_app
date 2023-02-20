@@ -74,6 +74,12 @@ class TasksWidgetModel extends ChangeNotifier {
     await task?.save();
   }
 
+  Future<void> nameChange(int taskIndex, String text) async {
+    final task = (await _box).getAt(taskIndex);
+    task?.text = text;
+    await task?.save();
+  }
+
   @override
   Future<void> dispose() async {
     _listenableBox?.removeListener(_readTasksFromHive);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/view/notes_screen/widgets/notes_list_widget.dart';
 import 'package:listta_clone_app/view/tasks_screen/widgets/empty_task_widget.dart';
-import 'package:listta_clone_app/view/tasks_screen/widgets/task_list_widget.dart';
-import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 
 import '../../../view_model/note_view_model.dart';
 

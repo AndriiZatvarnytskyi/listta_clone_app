@@ -14,3 +14,8 @@ class SelectFocusDate extends CalendarEvent {
   @override
   List<Object?> get props => [focusDate];
 }
+
+class CloseCalendar extends CalendarEvent {
+  @override
+  List<Object?> get props => [];
+}

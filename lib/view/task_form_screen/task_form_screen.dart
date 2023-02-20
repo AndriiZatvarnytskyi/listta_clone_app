@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
-import 'package:listta_clone_app/view_model/task_form_view_model.dart';
 import 'package:listta_clone_app/view/task_form_screen/widgets/task_form_widget.dart';
 
 class TaskFormScreen extends StatelessWidget {
@@ -27,8 +26,8 @@ class TaskFormScreen extends StatelessWidget {
           'Створити завдання',
           style: Theme.of(context)
               .textTheme
-              .bodyText2!
-              .copyWith(fontWeight: FontWeight.w500),
+              .displaySmall!
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 20),
         ),
       ),
       body: const Padding(

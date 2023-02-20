@@ -19,7 +19,7 @@ class _TasksListWidgetState extends State<TasksListWidget> {
     return BlocBuilder<TaskListBloc, TaskListState>(
       builder: (context, state) {
         return ListView.builder(
-          physics: const ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          physics: const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
           shrinkWrap: true,
           itemCount: tasksCount,
           itemBuilder: (

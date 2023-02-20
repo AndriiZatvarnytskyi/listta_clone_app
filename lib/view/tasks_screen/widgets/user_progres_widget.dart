@@ -22,7 +22,7 @@ class _UserProgresWidgetState extends State<UserProgresWidget> {
             'Прогрес сьогодні(0/1)',
             style: Theme.of(context)
                 .textTheme
-                .headline2!
+                .displayMedium!
                 .copyWith(fontWeight: FontWeight.w400),
           )
         ],

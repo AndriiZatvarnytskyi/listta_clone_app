@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/view_model/note_view_model.dart';
-import 'package:listta_clone_app/view_model/tasks_view_model.dart';
-import 'package:intl/intl.dart';
 
 class NotesListRowWidget extends StatelessWidget {
   final int indexInList;
@@ -26,10 +24,7 @@ class NotesListRowWidget extends StatelessWidget {
     return Dismissible(
       key: UniqueKey(),
       background: Container(
-        padding: const EdgeInsets.only(right: 10),
         alignment: AlignmentDirectional.centerEnd,
-        color: Colors.red.shade400,
-        child: const Icon(Icons.delete_outline, color: Colors.white, size: 35),
       ),
       onDismissed: (direction) {
         model.deleteNote(indexInList);
@@ -38,9 +33,19 @@ class NotesListRowWidget extends StatelessWidget {
       child: ListTile(
         title: Text(
           note.name,
-          //style: style,
+          style: Theme.of(context)
+              .textTheme
+              .displayMedium!
+              .copyWith(fontWeight: FontWeight.w300),
         ),
-        leading: Icon(Icons.note),
+        subtitle: Text(
+          note.description,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: Theme.of(context).hintColor),
+        ),
+
         // onTap: () => model.doneToggle(indexInList),
       ),
     );

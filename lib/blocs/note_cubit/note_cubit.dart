@@ -19,6 +19,5 @@ class NoteCubit extends Cubit<NoteState> {
     );
     await box.add(note);
     await BoxManager.instance.closeBox(box);
-    print(box);
   }
 }

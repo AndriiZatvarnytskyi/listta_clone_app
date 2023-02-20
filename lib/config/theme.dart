@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:listta_clone_app/config/constants.dart';
 
-ThemeData theme() {
+ThemeData lightTheme() {
   return ThemeData(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Colors.white,
@@ -16,7 +17,8 @@ ThemeData theme() {
         color: Color.fromARGB(255, 255, 255, 255),
       ),
       disabledColor: Colors.black87,
-      primaryColor: const Color.fromARGB(255, 168, 168, 168),
+      hintColor: Colors.black26,
+      primaryColor: kPrimaryColor,
       primaryColorDark: const Color.fromARGB(255, 206, 167, 62),
       primaryColorLight: const Color.fromRGBO(255, 206, 167, 62),
       scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -24,39 +26,112 @@ ThemeData theme() {
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',
       textTheme: const TextTheme(
-        headline1: TextStyle(
+        labelMedium: TextStyle(
+          color: Colors.black54,
+          fontWeight: FontWeight.w300,
+          fontSize: 16,
+        ),
+        displayLarge: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.bold,
             fontSize: 36),
-        headline2: TextStyle(
+        displayMedium: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.bold,
             fontSize: 20),
-        headline3: TextStyle(
+        displaySmall: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.bold,
             fontSize: 17),
-        headline4: TextStyle(
+        headlineMedium: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.w400,
             fontSize: 16),
-        headline5: TextStyle(
+        headlineSmall: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.bold,
             fontSize: 14),
-        headline6: TextStyle(
+        titleLarge: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.w500,
             fontSize: 13),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.normal,
             fontSize: 12),
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
             color: Color(0xFF11071B),
             fontWeight: FontWeight.normal,
             fontSize: 10),
-        subtitle1: TextStyle(
+        titleMedium: TextStyle(
             color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 15),
+      ));
+}
+
+ThemeData darkTheme() {
+  return ThemeData.dark().copyWith(
+      primaryColor: kPrimaryColor,
+      scaffoldBackgroundColor: kContentColorLightTheme,
+      hintColor: Colors.white38,
+      appBarTheme: const AppBarTheme(
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        elevation: 0,
+        color: kAppBarColor,
+      ),
+      iconTheme: const IconThemeData(color: kContentColorDarkTheme),
+      colorScheme: const ColorScheme.dark().copyWith(
+        primary: kPrimaryColor,
+        secondary: kSecondaryColor,
+        error: kErrorColor,
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: kContentColorLightTheme,
+        selectedItemColor: Colors.white70,
+        unselectedItemColor: kContentColorDarkTheme.withOpacity(0.32),
+        selectedIconTheme: const IconThemeData(color: kPrimaryColor),
+        showUnselectedLabels: true,
+      ),
+      textTheme: const TextTheme(
+        labelMedium: TextStyle(
+          color: Colors.white30,
+          fontWeight: FontWeight.w300,
+          fontSize: 16,
+        ),
+        displayLarge: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.bold,
+            fontSize: 36),
+        displayMedium: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        displaySmall: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.bold,
+            fontSize: 17),
+        headlineMedium: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.w400,
+            fontSize: 16),
+        headlineSmall: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.bold,
+            fontSize: 14),
+        titleLarge: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.w500,
+            fontSize: 13),
+        bodyLarge: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.normal,
+            fontSize: 12),
+        bodyMedium: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.normal,
+            fontSize: 10),
+        titleMedium: TextStyle(
+            color: kContentColorDarkTheme,
+            fontWeight: FontWeight.w500,
+            fontSize: 15),
       ));
 }

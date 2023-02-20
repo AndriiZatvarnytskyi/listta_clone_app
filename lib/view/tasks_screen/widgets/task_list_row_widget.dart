@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:listta_clone_app/view/task_edition_screen/task_edition_screen.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
-import 'package:intl/intl.dart';
 
 class TasksListRowWidget extends StatelessWidget {
   final int indexInList;
@@ -18,20 +18,14 @@ class TasksListRowWidget extends StatelessWidget {
     final dateX = model.tasks[indexInList].date;
 
     final icon = task.isDone ? Icons.check_box : Icons.check_box_outline_blank;
-    final style = task.isDone
-        ? Theme.of(context)
-            .textTheme
-            .headline4!
-            .copyWith(color: Theme.of(context).primaryColor)
-        : Theme.of(context).textTheme.headline4;
+    final color = task.isDone
+        ? Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.3)
+        : Theme.of(context).textTheme.headlineMedium!.color;
 
     return Dismissible(
       key: UniqueKey(),
       background: Container(
-        padding: const EdgeInsets.only(right: 10),
         alignment: AlignmentDirectional.centerEnd,
-        color: Colors.red.shade400,
-        child: const Icon(Icons.delete_outline, color: Colors.white, size: 35),
       ),
       onDismissed: (direction) {
         model.deleteTask(indexInList);
@@ -41,12 +35,31 @@ class TasksListRowWidget extends StatelessWidget {
               dateX.month == date.month &&
               dateX.day == date.day
           ? ListTile(
+              trailing: IconButton(
+                  icon: Icon(Icons.edit, color: color),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TaskEditionScreen(
+                              taskName: model.tasks[indexInList].text,
+                              taskIndex: indexInList,
+                            )));
+                  }),
               title: Text(
                 task.text,
-                style: style,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: color),
               ),
-              leading: Icon(icon),
-              onTap: () => model.doneToggle(indexInList),
+              leading: IconButton(
+                splashRadius: 20,
+                icon: Icon(
+                  icon,
+                  color: color,
+                ),
+                onPressed: () => model.doneToggle(indexInList),
+              ),
+              // onTap: () => model.doneToggle(indexInList),
             )
           : Container(),
     );

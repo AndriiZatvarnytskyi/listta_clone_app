@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
-import 'package:listta_clone_app/view_model/task_form_view_model.dart';
 
 class TaskFormWidget extends StatelessWidget {
   const TaskFormWidget({super.key});
@@ -10,13 +9,13 @@ class TaskFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: Theme.of(context).textTheme.headline4,
+      style: Theme.of(context).textTheme.headlineMedium,
       autofocus: true,
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: 'Назва',
-        hintStyle: Theme.of(context).textTheme.headline3!.copyWith(
-            fontWeight: FontWeight.w500, color: Theme.of(context).primaryColor),
+        hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+            fontWeight: FontWeight.w500, color: Theme.of(context).hintColor),
       ),
       onChanged: (value) {
         context.read<TaskCubit>().taskName = value;
