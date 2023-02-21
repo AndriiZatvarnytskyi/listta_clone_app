@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/domain/data_provider/box_manager.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
@@ -6,8 +8,6 @@ part 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   TaskCubit() : super(TaskInitial());
-
-  DateTime? selectedDays;
 
   var taskName = '';
   bool isDone = false;

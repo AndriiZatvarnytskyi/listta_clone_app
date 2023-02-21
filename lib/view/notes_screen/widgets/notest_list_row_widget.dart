@@ -36,14 +36,7 @@ class NotesListRowWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .displayMedium!
-              .copyWith(fontWeight: FontWeight.w300),
-        ),
-        subtitle: Text(
-          note.description,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: Theme.of(context).hintColor),
+              .copyWith(fontWeight: FontWeight.w400),
         ),
 
         // onTap: () => model.doneToggle(indexInList),

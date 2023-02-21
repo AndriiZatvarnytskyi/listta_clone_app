@@ -27,7 +27,9 @@ class _TasksScreenState extends State<TasksScreen> {
           extendBody: true,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              TasksWidgetModelProvider.read(context)?.model.showForm(context);
+              TasksWidgetModelProvider.read(context)?.model.showForm(
+                    context,
+                  );
             },
             child: const Icon(Icons.add),
           ),
