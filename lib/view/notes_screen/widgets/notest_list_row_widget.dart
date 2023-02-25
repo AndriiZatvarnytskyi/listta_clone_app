@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listta_clone_app/view/note_edition_screen/note_edition_screen.dart';
 import 'package:listta_clone_app/view_model/note_view_model.dart';
 
 class NotesListRowWidget extends StatelessWidget {
@@ -38,8 +39,17 @@ class NotesListRowWidget extends StatelessWidget {
               .displayMedium!
               .copyWith(fontWeight: FontWeight.w400),
         ),
-
-        // onTap: () => model.doneToggle(indexInList),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => NoteEditionScreen(
+                noteDescription: note.description,
+                noteName: note.name,
+                noteIndex: indexInList,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

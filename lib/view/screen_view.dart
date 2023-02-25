@@ -4,6 +4,7 @@ import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/blocs/theme_cubit/theme_cubit.dart';
 import 'package:listta_clone_app/view/notes_screen/notes_screen.dart';
 import 'package:listta_clone_app/view/tasks_screen/tasks_screen.dart';
+import 'package:listta_clone_app/widgets/theme_list.dart';
 
 class ScreenView extends StatefulWidget {
   const ScreenView({super.key});
@@ -14,62 +15,77 @@ class ScreenView extends StatefulWidget {
 
 class _ScreenViewState extends State<ScreenView> {
   final PageController _myPage = PageController(initialPage: 0);
-  bool isDark = true;
+  late int _currentPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = 0;
+    _myPage.addListener(() {
+      setState(() {
+        _currentPage = _myPage.page!.toInt();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         actions: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            icon: Icon(
-              isDark ? Icons.dark_mode : Icons.light_mode,
-              size: 25,
-              color: Theme.of(context).iconTheme.color,
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              icon: Image.asset(
+                'assets/calendar.png',
+                height: 20,
+                width: 20,
+                color: context.read<CalendarBloc>().state.status.isClosed
+                    ? Theme.of(context).iconTheme.color
+                    : Theme.of(context).primaryColor,
+              ),
+              onPressed: () async {
+                setState(() {
+                  context.read<CalendarBloc>().add(
+                        CloseCalendar(),
+                      );
+                });
+              },
             ),
-            onPressed: () {
-              context.read<ThemeCubit>().toggleBrightness();
-              isDark = !isDark;
-              setState(() {});
-            },
           ),
-          IconButton(
-            icon: Image.asset(
-              'assets/calendar.png',
-              height: 20,
-              width: 20,
-              color: context.read<CalendarBloc>().state.status.isClosed
-                  ? Theme.of(context).primaryColor
-                  : Theme.of(context).iconTheme.color,
-            ),
-            onPressed: () async {
-              setState(() {
-                context.read<CalendarBloc>().add(
-                      CloseCalendar(),
-                    );
-              });
-            },
-          ),
-          IconButton(
-            iconSize: 30.0,
-            icon: Image.asset(
-              'assets/setting.png',
-              height: 20,
-              width: 20,
-              color: Theme.of(context).iconTheme.color,
-            ),
-            onPressed: () {},
-          )
         ],
-        leading: IconButton(
-          color: Theme.of(context).iconTheme.color,
-          icon: Image.asset(
-            'assets/menu.png',
-            height: 20,
-            width: 20,
-            color: Theme.of(context).iconTheme.color,
-          ),
-          onPressed: () {},
+      ),
+      drawer: Drawer(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        child: Column(
+          children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).appBarTheme.color,
+                ),
+                child: InkWell(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        'Обери \nулюблену тему'.toUpperCase(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
+                                fontSize: 32, fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
+                )),
+            const SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: ThemeList(),
+              ),
+            )
+          ],
         ),
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -90,9 +106,12 @@ class _ScreenViewState extends State<ScreenView> {
                   children: [
                     IconButton(
                       alignment: Alignment.bottomCenter,
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.done,
                         size: 25,
+                        color: _currentPage == 0
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context).iconTheme.color,
                       ),
                       onPressed: () {
                         setState(() {
@@ -102,10 +121,10 @@ class _ScreenViewState extends State<ScreenView> {
                     ),
                     Text(
                       'Завдання',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Theme.of(context).primaryColor),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: _currentPage == 0
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).iconTheme.color),
                       textAlign: TextAlign.start,
                     )
                   ],
@@ -115,9 +134,10 @@ class _ScreenViewState extends State<ScreenView> {
               //   children: [
               //     IconButton(
               //       alignment: Alignment.bottomCenter,
-              //       icon: const Icon(
+              //       icon:  Icon(
               //         Icons.calendar_month_outlined,
               //         size: 25,
+              //color: _myPage.page == 1 ? Theme.of(context).primaryColor : Theme.of(context).disabledColor
               //       ),
               //       onPressed: () {
               //         setState(() {
@@ -130,7 +150,7 @@ class _ScreenViewState extends State<ScreenView> {
               //       style: Theme.of(context)
               //           .textTheme
               //           .bodyMedium!
-              //           .copyWith(color: Theme.of(context).primaryColor),
+              //           .copyWith(color: _myPage.page == 1 ? Theme.of(context).primaryColor : Theme.of(context).disabledColor),
               //       textAlign: TextAlign.start,
               //     ),
               //   ],
@@ -141,22 +161,26 @@ class _ScreenViewState extends State<ScreenView> {
                   children: [
                     IconButton(
                       alignment: Alignment.bottomCenter,
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.note_outlined,
                         size: 25,
+                        color: _currentPage == 1
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context).iconTheme.color,
                       ),
                       onPressed: () {
                         setState(() {
-                          _myPage.jumpToPage(2);
+                          _myPage.jumpToPage(1);
                         });
                       },
                     ),
                     Text(
                       'Замітки',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Theme.of(context).primaryColor),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: _currentPage == 1
+                                ? Theme.of(context).primaryColor
+                                : Theme.of(context).iconTheme.color,
+                          ),
                       textAlign: TextAlign.start,
                     )
                   ],
@@ -173,9 +197,6 @@ class _ScreenViewState extends State<ScreenView> {
           physics: const NeverScrollableScrollPhysics(),
           children: const [
             TasksScreen(),
-            Center(
-              child: Text('Empty Body 2'),
-            ),
             NotesScreen()
           ], // Comment this if you need to use Swipe.
         ),

@@ -20,19 +20,22 @@ class TaskAdapter extends TypeAdapter<Task> {
       text: fields[0] as String,
       isDone: fields[1] as bool,
       date: fields[2] as DateTime,
+      notificationTime: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Task obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.text)
       ..writeByte(1)
       ..write(obj.isDone)
       ..writeByte(2)
-      ..write(obj.date);
+      ..write(obj.date)
+      ..writeByte(3)
+      ..write(obj.notificationTime);
   }
 
   @override

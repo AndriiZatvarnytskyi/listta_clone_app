@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/domain/data_provider/box_manager.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
@@ -10,6 +8,7 @@ class TaskCubit extends Cubit<TaskState> {
   TaskCubit() : super(TaskInitial());
 
   var taskName = '';
+  DateTime? notificationTime;
   bool isDone = false;
   DateTime taskDate = DateTime.now();
 
@@ -17,10 +16,10 @@ class TaskCubit extends Cubit<TaskState> {
     if (taskName.isEmpty) return;
     final box = await BoxManager.instance.openTaskBox();
     final task = Task(
-      text: taskName,
-      isDone: isDone,
-      date: taskDate,
-    );
+        text: taskName,
+        isDone: isDone,
+        date: taskDate,
+        notificationTime: notificationTime);
     await box.add(task);
     await BoxManager.instance.closeBox(box);
   }

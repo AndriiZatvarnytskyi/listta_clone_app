@@ -13,19 +13,24 @@ class TasksListWidget extends StatefulWidget {
 }
 
 class _TasksListWidgetState extends State<TasksListWidget> {
+  dynamic fdsf;
+  @override
+  void initState() {
+    fdsf = DateTime.now();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final tasksCount =
-        TasksWidgetModelProvider.watch(context)?.model.tasks.length ?? 0;
     return BlocBuilder<TaskListBloc, TaskListState>(
       builder: (context, state) {
         final model = TasksWidgetModelProvider.watch(context)!.model;
-        final tasks = model.tasks;
 
         final task = model.tasks
-            .where(
-              (element) => element.date == state.taskDate,
-            )
+            .where((element) =>
+                element.date.day == state.taskDate.day &&
+                element.date.month == state.taskDate.month &&
+                element.date.year == state.taskDate.year)
             .toList();
         return task.isNotEmpty
             ? ListView.builder(

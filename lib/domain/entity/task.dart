@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'task.g.dart';
@@ -10,9 +11,11 @@ class Task extends HiveObject {
   bool isDone;
   @HiveField(2)
   DateTime date;
-  Task({
-    required this.text,
-    required this.isDone,
-    required this.date,
-  });
+  @HiveField(3)
+  DateTime? notificationTime;
+  Task(
+      {required this.text,
+      required this.isDone,
+      required this.date,
+      this.notificationTime});
 }

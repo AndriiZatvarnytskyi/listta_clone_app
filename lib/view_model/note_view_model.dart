@@ -22,6 +22,18 @@ class NotesWidgetModel extends ChangeNotifier {
   //       .pushNamed(MainNavigationRouteNames.addTask, arguments: selectedDay);
   // }
 
+  Future<void> nameChange(int noteIndex, String name) async {
+    final note = (await _box).getAt(noteIndex);
+    note?.name = name;
+    await note?.save();
+  }
+
+  Future<void> descriptionChange(int noteIndex, String description) async {
+    final note = (await _box).getAt(noteIndex);
+    note?.description = description;
+    await note?.save();
+  }
+
   void showForm(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => NoteFormScreen()));

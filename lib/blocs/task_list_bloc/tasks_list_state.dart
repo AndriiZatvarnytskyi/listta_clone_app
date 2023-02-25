@@ -21,7 +21,7 @@ class TaskListState extends Equatable {
     dynamic taskDate,
   }) : taskDate = taskDate ?? DateTime.now();
 
-  final dynamic taskDate;
+  final DateTime taskDate;
   final TaskListStatus status;
 
   @override

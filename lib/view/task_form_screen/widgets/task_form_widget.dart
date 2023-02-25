@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
+import 'package:listta_clone_app/domain/helper/utils.dart';
 
 class TaskFormWidget extends StatelessWidget {
-  TaskFormWidget(this.controller, this.myFocus);
+  TaskFormWidget(this.controller, this.myFocus, {super.key});
   TextEditingController controller;
   FocusNode myFocus;
 
@@ -13,6 +14,7 @@ class TaskFormWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: TextField(
+        textCapitalization: TextCapitalization.sentences,
         maxLength: 50,
         focusNode: myFocus,
         controller: controller,
@@ -31,6 +33,10 @@ class TaskFormWidget extends StatelessWidget {
         },
         onEditingComplete: () {
           context.read<TaskCubit>().saveTask();
+          kEventSource.addAll({
+            context.read<CalendarBloc>().state.focusDate: [Event('')]
+          });
+
           Navigator.pop(context);
         },
       ),

@@ -30,12 +30,5 @@ class _NotesWidgetBody extends StatelessWidget {
     } else {
       return const CircularProgressIndicator();
     }
-    // TasksWidgetModelProvider.watch(context)!.model.tasks.isNotEmpty
-    //     ? TasksListWidget()
-    //     : const EmptyTaskWidget();
-    // floatingActionButton: FloatingActionButton(
-    //   onPressed: () =>
-    //       GroupsWidgetModelProvider.read(context)?.model.showForm(context),
-    //   child: const Icon(Icons.add),
   }
 }

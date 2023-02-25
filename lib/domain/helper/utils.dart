@@ -25,14 +25,14 @@ final kEventSource = {
     DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5): List.generate(
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}'))
 }..addAll({
-    DateTime(2023, 02, 02): [
-      const Event('Today\'s Event 1'),
-      const Event('Today\'s Event 2'),
-    ],
-    kToday: [
-      const Event('Today\'s Event 1'),
-      const Event('Today\'s Event 2'),
-    ],
+    // DateTime(2023, 02, 02): [
+    //   const Event('Today\'s Event 1'),
+    //   const Event('Today\'s Event 2'),
+    // ],
+    // kToday: [
+    //   const Event('Today\'s Event 1'),
+    //   const Event('Today\'s Event 2'),
+    // ],
   });
 
 int getHashCode(DateTime key) {

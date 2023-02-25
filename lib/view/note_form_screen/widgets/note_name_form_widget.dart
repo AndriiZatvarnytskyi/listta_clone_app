@@ -8,6 +8,7 @@ class NoteNameFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+        textCapitalization: TextCapitalization.sentences,
         maxLength: 25,
         style: Theme.of(context)
             .textTheme

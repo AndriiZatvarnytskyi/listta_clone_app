@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
+import 'package:listta_clone_app/domain/helper/utils.dart';
 import '../domain/data_provider/box_manager.dart';
 import '../view/task_form_screen/task_form_screen.dart';
 
@@ -71,6 +72,12 @@ class TasksWidgetModel extends ChangeNotifier {
   Future<void> dateChange(int taskIndex, DateTime date) async {
     final task = (await _box).getAt(taskIndex);
     task?.date = date;
+    await task?.save();
+  }
+
+  Future<void> addNotification(int taskIndex, DateTime notificationTime) async {
+    final task = (await _box).getAt(taskIndex);
+    task?.notificationTime = notificationTime;
     await task?.save();
   }
 

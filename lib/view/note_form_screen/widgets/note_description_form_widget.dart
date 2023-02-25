@@ -8,6 +8,7 @@ class NoteDescriptionFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textCapitalization: TextCapitalization.sentences,
       maxLines: 20,
       style: Theme.of(context).textTheme.headlineMedium,
       autofocus: true,

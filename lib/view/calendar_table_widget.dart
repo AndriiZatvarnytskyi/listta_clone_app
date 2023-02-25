@@ -15,21 +15,16 @@ class CalendarTableWidget extends StatefulWidget {
 class _CalendarTableWidgetState extends State<CalendarTableWidget> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   final DateTime _currentDay = DateTime.now();
+  final Map<DateTime, List<Event>> selectedEvents = {};
 
   DateTime? _selectedDay;
 
   StartingDayOfWeek startingDayOfWeek = StartingDayOfWeek.monday;
 
-  List<Event> _getEventsForDay(DateTime day, DateTime newDate) {
-    kEventSource.addAll({
-      newDate: [
-        const Event('Today\'s Event 1'),
-      ],
-      kToday: [
-        const Event('Today\'s Event 1'),
-      ],
-    });
-    return kEvents[day] ?? [];
+  List<Event> _getEventsForDay(
+    DateTime day,
+  ) {
+    return kEventSource[day] ?? [];
   }
 
   @override
@@ -53,7 +48,10 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                     );
                     _selectedDay = _currentDay;
                   },
-                  icon: const Icon(Icons.today_rounded)),
+                  icon: Icon(
+                    Icons.today_rounded,
+                    color: Theme.of(context).textTheme.headlineMedium!.color,
+                  )),
               formatButtonDecoration: const BoxDecoration(
                   border: Border.fromBorderSide(BorderSide()),
                   borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -70,8 +68,13 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                     .copyWith(
                         fontWeight: FontWeight.w400, color: Colors.black54)),
             calendarStyle: CalendarStyle(
-                // markerDecoration: BoxDecoration(color: Colors.red),
-                // markerSize: 25,
+                markerDecoration: BoxDecoration(
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                    borderRadius: BorderRadius.circular(100)),
+                markerMargin: EdgeInsets.zero,
+                markersAnchor: 1.5,
+                markersMaxCount: 999,
+                markerSize: 4,
                 todayDecoration: BoxDecoration(
                     color: Theme.of(context).hintColor, shape: BoxShape.circle),
                 selectedDecoration: BoxDecoration(
@@ -86,7 +89,7 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                     Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontWeight: FontWeight.w500,
                         )),
-            rowHeight: 40,
+            rowHeight: 42,
             daysOfWeekHeight: 25,
             startingDayOfWeek: startingDayOfWeek,
             weekendDays: const [DateTime.saturday, DateTime.sunday],
@@ -95,9 +98,7 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
             focusedDay: state.focusDate,
             calendarFormat: _calendarFormat,
             locale: 'uk_UA',
-            // eventLoader: (day) {
-            //   return _getEventsForDay(day, model.tasks);
-            // },
+            eventLoader: _getEventsForDay,
             selectedDayPredicate: (day) {
               return isSameDay(_selectedDay, day);
             },
@@ -109,7 +110,6 @@ class _CalendarTableWidgetState extends State<CalendarTableWidget> {
                 BlocProvider.of<TaskListBloc>(context).add(
                   SelectTaskDate(taskDate: selectedDay),
                 );
-                // Call `setState()` when updating the selected day
                 setState(() {
                   _selectedDay = selectedDay;
                 });

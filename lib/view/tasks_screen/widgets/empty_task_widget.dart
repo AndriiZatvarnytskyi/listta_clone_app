@@ -9,6 +9,7 @@ class EmptyTaskWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50),
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Ваш список порожній',

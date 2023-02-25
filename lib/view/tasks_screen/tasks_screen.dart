@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/view/calendar_table_widget.dart';
+import 'package:listta_clone_app/view/tasks_screen/widgets/task_list_widget.dart';
 import 'package:listta_clone_app/view/tasks_screen/widgets/user_progres_widget.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
-import 'package:listta_clone_app/view/tasks_screen/widgets/tasks_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TasksScreen extends StatefulWidget {
@@ -68,7 +68,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           textAlign: TextAlign.left,
                         ),
                       )),
-                  TasksWidget(),
+                  const TasksListWidget(),
                 ],
               ),
             ),
