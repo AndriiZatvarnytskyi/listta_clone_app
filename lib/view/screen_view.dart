@@ -45,7 +45,7 @@ class _ScreenViewState extends State<ScreenView> {
                     ? Theme.of(context).iconTheme.color
                     : Theme.of(context).primaryColor,
               ),
-              onPressed: () async {
+              onPressed: () {
                 setState(() {
                   context.read<CalendarBloc>().add(
                         CloseCalendar(),
@@ -62,28 +62,22 @@ class _ScreenViewState extends State<ScreenView> {
           children: [
             DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).appBarTheme.color,
+                  color: Theme.of(context).appBarTheme.backgroundColor,
                 ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Row(
-                    children: [
-                      Text(
-                        'Обери \nулюблену тему'.toUpperCase(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                                fontSize: 32, fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Обери \nулюблену тему'.toUpperCase(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(fontSize: 32, fontWeight: FontWeight.w500),
+                    )
+                  ],
                 )),
-            const SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: ThemeList(),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ThemeList(),
             )
           ],
         ),

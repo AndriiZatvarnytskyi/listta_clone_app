@@ -13,9 +13,12 @@ class Task extends HiveObject {
   DateTime date;
   @HiveField(3)
   DateTime? notificationTime;
+  @HiveField(4)
+  bool? isHighPriority;
   Task(
       {required this.text,
       required this.isDone,
       required this.date,
-      this.notificationTime});
+      this.notificationTime,
+      this.isHighPriority});
 }

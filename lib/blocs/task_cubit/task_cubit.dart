@@ -4,13 +4,19 @@ import 'package:listta_clone_app/domain/entity/task.dart';
 
 part 'task_state.dart';
 
-class TaskCubit extends Cubit<TaskState> {
-  TaskCubit() : super(TaskInitial());
+class TaskCubit extends Cubit<int> {
+  TaskCubit() : super(0);
 
   var taskName = '';
   DateTime? notificationTime;
   bool isDone = false;
   DateTime taskDate = DateTime.now();
+  bool isHighPriority = false;
+  int? index;
+
+  void changeIndex(int newIndex) {
+    emit(newIndex);
+  }
 
   void saveTask() async {
     if (taskName.isEmpty) return;
@@ -19,7 +25,8 @@ class TaskCubit extends Cubit<TaskState> {
         text: taskName,
         isDone: isDone,
         date: taskDate,
-        notificationTime: notificationTime);
+        notificationTime: notificationTime,
+        isHighPriority: isHighPriority);
     await box.add(task);
     await BoxManager.instance.closeBox(box);
   }

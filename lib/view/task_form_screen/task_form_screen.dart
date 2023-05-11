@@ -6,7 +6,12 @@ import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
 import 'package:listta_clone_app/domain/helper/utils.dart';
 import 'package:listta_clone_app/view/calendar_table_widget.dart';
 import 'package:listta_clone_app/view/task_form_screen/widgets/task_form_widget.dart';
+import 'package:listta_clone_app/view/tasks_screen/tasks_screen.dart';
+import 'package:listta_clone_app/widgets/sliding_up_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import '../../blocs/task_list_bloc/tasks_list_bloc.dart';
+import '../../blocs/theme_cubit/theme_cubit.dart';
 
 class TaskFormScreen extends StatefulWidget {
   const TaskFormScreen({super.key});
@@ -16,27 +21,14 @@ class TaskFormScreen extends StatefulWidget {
 }
 
 class _TaskFormScreenState extends State<TaskFormScreen> {
-  final double _initFabHeight = 120.0;
   PanelController panelController = PanelController();
 
-  double _fabHeight = 0;
   FocusNode myFocus = FocusNode();
 
-  double _panelHeightOpen = 0;
-
-  double _panelHeightClosed = 0.0;
   TextEditingController controller = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-
-    _fabHeight = _initFabHeight;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    _panelHeightOpen = MediaQuery.of(context).size.height * .50;
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -61,34 +53,64 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
       ),
       body: Stack(
         children: [
-          SlidingUpPanel(
-            color: Theme.of(context).appBarTheme.color!,
-            controller: panelController,
-            maxHeight: _panelHeightOpen,
-            minHeight: _panelHeightClosed,
-            parallaxEnabled: true,
-            parallaxOffset: .5,
-            body: Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            panelBuilder: (sc) => _panel(sc),
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(18.0),
-                topRight: Radius.circular(18.0)),
-            onPanelSlide: (double pos) => setState(() {
-              _fabHeight = pos * (_panelHeightOpen - _panelHeightClosed) +
-                  _initFabHeight;
-            }),
-          ),
+          slidingUpWidget(
+              panelHeightOpen: MediaQuery.of(context).size.height * .5,
+              context: context,
+              children: [
+                CalendarTableWidget(
+                  panelController: panelController,
+                )
+              ],
+              panelController: panelController),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
                 TaskFormWidget(controller, myFocus),
                 TextButton(
-                    onPressed: () {
-                      panelController.open();
-                      myFocus.unfocus();
+                    onPressed: () async {
+                      // final DateTime? date = await showDatePicker(
+                      //   //locale: Locale('uk'),
+                      //   firstDate: DateTime(2020, 01, 01),
+                      //   lastDate: DateTime(2026, 01, 01),
+                      //   context: context,
+                      //   initialDate: DateTime.now(),
+                      //   builder: (context, child) {
+                      //     return Theme(
+                      //       data: context.read<ThemeCubit>().state.copyWith(
+                      //             dialogTheme: DialogTheme(
+                      //                 backgroundColor: Theme.of(context)
+                      //                     .scaffoldBackgroundColor),
+                      //             colorScheme: ColorScheme.light(
+                      //               primary:
+                      //                   Theme.of(context).appBarTheme.backgroundColor!,
+                      //               onPrimary: Theme.of(context)
+                      //                   .textTheme
+                      //                   .headlineMedium!
+                      //                   .color!,
+                      //               onSurface: Theme.of(context)
+                      //                   .textTheme
+                      //                   .headlineMedium!
+                      //                   .color!,
+                      //             ),
+                      //           ),
+                      //       child: child!,
+                      //     );
+                      //   },
+                      // );
+                      // if (date != null) {
+                      //   context
+                      //       .read<CalendarBloc>()
+                      //       .add(SelectFocusDate(focusDate: date));
+                      // }
+
+                      // // if (date != null) {
+                      // //   kEventSource.addAll({
+                      // //     date: [const Event('')]
+                      // //   });
+                      // // }
+                      // //panelController.open();
+                      // myFocus.unfocus();
                     },
                     child: Row(
                       children: [
@@ -122,23 +144,17 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.read<TaskCubit>().saveTask();
+          BlocProvider.of<TaskListBloc>(context).add(
+            SelectTaskDate(
+                taskDate: context.read<CalendarBloc>().state.focusDate),
+          );
+          context.read<TaskCubit>().taskDate =
+              context.read<CalendarBloc>().state.focusDate;
+
           Navigator.pop(context);
-          kEventSource.addAll({
-            context.read<CalendarBloc>().state.focusDate: [Event('')]
-          });
         },
         child: const Icon(Icons.done),
       ),
     );
-  }
-
-  Widget _panel(ScrollController sc) {
-    return MediaQuery.removePadding(
-        context: context,
-        removeTop: true,
-        child: ListView(
-          controller: sc,
-          children: const <Widget>[CalendarTableWidget()],
-        ));
   }
 }

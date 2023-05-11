@@ -4,9 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:listta_clone_app/blocs/bloc/sliding_settings_bloc.dart';
 import 'package:listta_clone_app/config/theme.dart';
 import 'package:listta_clone_app/notification/noti.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
+
 // ignore: unused_import, depend_on_referenced_packages
 import 'package:timezone/timezone.dart' as tz;
 // ignore: unused_import, depend_on_referenced_packages
@@ -23,6 +26,8 @@ void main() async {
   await Hive.initFlutter();
   tz.initializeTimeZones();
   await NotificationService().initNotification();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -39,6 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => SlidingSettingsBloc()),
         BlocProvider(create: (_) => ThemeCubit()),
         BlocProvider(create: (_) => NoteCubit()),
         BlocProvider(create: (_) => TaskCubit()),

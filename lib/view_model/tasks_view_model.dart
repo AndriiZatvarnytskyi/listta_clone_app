@@ -22,6 +22,23 @@ class TasksWidgetModel extends ChangeNotifier {
   //   Navigator.of(context)
   //       .pushNamed(MainNavigationRouteNames.addTask, arguments: selectedDay);
   // }
+  void saveTask(
+    BuildContext context,
+    DateTime taskDate,
+    String taskName,
+    bool? isHighPriority,
+  ) async {
+    final box = await BoxManager.instance.openTaskBox();
+    final task = Task(
+      notificationTime: DateTime.now().copyWith(hour: 22, minute: 21),
+      text: taskName,
+      isDone: false,
+      date: taskDate,
+      isHighPriority: isHighPriority ?? false,
+    );
+    await box.add(task);
+    await BoxManager.instance.closeBox(box);
+  }
 
   void changeSelectedDay(DateTime selectedDay) {
     selectedDays = selectedDay;
@@ -45,7 +62,7 @@ class TasksWidgetModel extends ChangeNotifier {
 
   Future<void> deleteTask(int taskIndex) async {
     final box = (await _box);
-    final taskKey = (await _box).keyAt(taskIndex) as int;
+    final taskKey = (await _box).keyAt(taskIndex);
     final taskBoxName = BoxManager.instance.makeTaskBoxName(taskKey);
     await Hive.deleteBoxFromDisk(taskBoxName);
     await box.deleteAt(taskIndex);
@@ -66,6 +83,15 @@ class TasksWidgetModel extends ChangeNotifier {
   Future<void> doneToggle(int taskIndex) async {
     final task = (await _box).getAt(taskIndex);
     task?.isDone = !task.isDone;
+    await task?.save();
+  }
+
+  Future<void> highPriorityToggle(int taskIndex) async {
+    final task = (await _box).getAt(taskIndex);
+    if (task?.isHighPriority != null) {
+      task?.isHighPriority = !task.isHighPriority!;
+    }
+
     await task?.save();
   }
 

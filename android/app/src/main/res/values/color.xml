@@ -1,0 +1,4 @@
+<resources>
+  <color name="gradientstart">#888888</color>
+  <color name="gradientend">#111111</color>
+</resources>

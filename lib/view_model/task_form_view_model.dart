@@ -5,18 +5,7 @@ class TaskFormWidgetModel {
   bool isDone = false;
   DateTime taskDate = DateTime.now();
 
-  // void saveTask(BuildContext context) async {
-  //   if (taskName.isEmpty) return;
-  //   final box = await BoxManager.instance.openTaskBox();
-  //   final task = Task(
-  //     text: taskName,
-  //     isDone: isDone,
-  //     date: taskDate,
-  //   );
-  //   await box.add(task);
-  //   await BoxManager.instance.closeBox(box);
-  //   Navigator.of(context).pop();
-  // }
+  
 }
 
 class TaskFormWidgetModelProvider extends InheritedWidget {

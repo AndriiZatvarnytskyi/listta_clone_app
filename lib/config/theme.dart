@@ -16,61 +16,96 @@ ThemeData lightTheme() {
         elevation: 0,
         color: Color.fromARGB(255, 240, 240, 240),
       ),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color.fromARGB(255, 240, 240, 240),
+        hourMinuteShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        dayPeriodTextColor: kLightThemeTextColor,
+        dayPeriodShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        hourMinuteColor: kLightScaffoldBackgroundColor,
+        hourMinuteTextColor: kLightThemeTextColor,
+        dialHandColor: Colors.black26,
+        dialBackgroundColor: kLightScaffoldBackgroundColor,
+        hourMinuteTextStyle: TextStyle(
+            color: kLightThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 25),
+        dayPeriodTextStyle: TextStyle(
+            color: kLightThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        helpTextStyle: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+        inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(20),
+        ),
+        dialTextColor: kLightThemeTextColor,
+        entryModeIconColor: kLightScaffoldBackgroundColor,
+      ),
       disabledColor: Colors.black87,
       hintColor: Colors.black26,
       primaryColor: kPrimaryColor,
       primaryColorDark: const Color.fromARGB(255, 206, 167, 62),
       primaryColorLight: const Color.fromRGBO(255, 206, 167, 62),
-      scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      scaffoldBackgroundColor: kLightScaffoldBackgroundColor,
       progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',
       textTheme: const TextTheme(
         labelMedium: TextStyle(
-          color: Colors.black54,
+          color: kLightThemeTextColor,
           fontWeight: FontWeight.w300,
           fontSize: 16,
         ),
         displayLarge: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 36),
         displayMedium: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 20),
         displaySmall: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 17),
         headlineMedium: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.w400,
             fontSize: 16),
         headlineSmall: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 14),
         titleLarge: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.w500,
             fontSize: 13),
         bodyLarge: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.normal,
             fontSize: 12),
         bodyMedium: TextStyle(
-            color: Color(0xFF11071B),
+            color: kLightThemeTextColor,
             fontWeight: FontWeight.normal,
             fontSize: 10),
         titleMedium: TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 15),
+            color: kLightThemeTextColor,
+            fontWeight: FontWeight.w500,
+            fontSize: 15),
       ));
 }
 
 ThemeData peachTheme() {
   return ThemeData(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Color.fromARGB(186, 255, 255, 255),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -86,10 +121,43 @@ ThemeData peachTheme() {
         elevation: 0,
         color: Color.fromARGB(255, 221, 160, 140),
       ),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color.fromARGB(255, 221, 160, 140),
+        hourMinuteShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        dayPeriodTextColor: kPeachThemeTextColor,
+        dayPeriodShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        hourMinuteColor: kPeachScaffoldBackgroundColor,
+        hourMinuteTextColor: kPeachThemeTextColor,
+        dialHandColor: Color.fromARGB(160, 221, 160, 140),
+        dialBackgroundColor: kPeachScaffoldBackgroundColor,
+        hourMinuteTextStyle: TextStyle(
+            color: kPeachThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 25),
+        dayPeriodTextStyle: TextStyle(
+            color: kPeachThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        helpTextStyle: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+        inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(20),
+        ),
+        dialTextColor: kPeachThemeTextColor,
+        entryModeIconColor: kPeachScaffoldBackgroundColor,
+      ),
       disabledColor: Colors.black87,
-      hintColor: Color.fromARGB(160, 221, 160, 140),
-      primaryColor: Color.fromARGB(255, 202, 107, 75),
-      scaffoldBackgroundColor: Color.fromARGB(255, 250, 231, 225),
+      hintColor: const Color.fromARGB(160, 221, 160, 140),
+      primaryColor: const Color.fromARGB(255, 202, 107, 75),
+      scaffoldBackgroundColor: kPeachScaffoldBackgroundColor,
       progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',
@@ -140,13 +208,46 @@ ThemeData peachTheme() {
 
 ThemeData blueTheme() {
   return ThemeData(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Color.fromARGB(186, 255, 255, 255),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Color.fromARGB(159, 140, 178, 221),
           foregroundColor: kBlueThemeTextColor,
           elevation: 3),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color.fromARGB(255, 140, 182, 221),
+        hourMinuteShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        dayPeriodTextColor: kBlueThemeTextColor,
+        dayPeriodShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        hourMinuteColor: kBlueScaffoldBackgroundColor,
+        hourMinuteTextColor: kBlueThemeTextColor,
+        dialHandColor: Color.fromARGB(159, 140, 178, 221),
+        dialBackgroundColor: kBlueScaffoldBackgroundColor,
+        hourMinuteTextStyle: TextStyle(
+            color: kBlueThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 25),
+        dayPeriodTextStyle: TextStyle(
+            color: kBlueThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        helpTextStyle: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+        inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(20),
+        ),
+        dialTextColor: kBlueThemeTextColor,
+        entryModeIconColor: kBlueScaffoldBackgroundColor,
+      ),
       elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(
@@ -157,9 +258,9 @@ ThemeData blueTheme() {
         color: Color.fromARGB(255, 140, 182, 221),
       ),
       disabledColor: Colors.black87,
-      hintColor: Color.fromARGB(159, 140, 178, 221),
-      primaryColor: Color.fromARGB(255, 69, 126, 179),
-      scaffoldBackgroundColor: Color.fromARGB(255, 255, 247, 240),
+      hintColor: const Color.fromARGB(159, 140, 178, 221),
+      primaryColor: const Color.fromARGB(255, 69, 126, 179),
+      scaffoldBackgroundColor: kBlueScaffoldBackgroundColor,
       progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',
@@ -210,7 +311,7 @@ ThemeData blueTheme() {
 
 ThemeData seaTheme() {
   return ThemeData(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Color.fromARGB(255, 240, 239, 239),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -226,10 +327,43 @@ ThemeData seaTheme() {
         elevation: 0,
         color: Color.fromARGB(255, 175, 224, 212),
       ),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color.fromARGB(255, 175, 224, 212),
+        hourMinuteShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        dayPeriodTextColor: kSeaThemeTextColor,
+        dayPeriodShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        hourMinuteColor: kSeaScaffoldBackgroundColor,
+        hourMinuteTextColor: kSeaThemeTextColor,
+        dialHandColor: Color.fromARGB(193, 181, 196, 201),
+        dialBackgroundColor: kSeaScaffoldBackgroundColor,
+        hourMinuteTextStyle: TextStyle(
+            color: kSeaThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 25),
+        dayPeriodTextStyle: TextStyle(
+            color: kSeaThemeTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
+        helpTextStyle: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+        inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(20),
+        ),
+        dialTextColor: kSeaThemeTextColor,
+        entryModeIconColor: kSeaScaffoldBackgroundColor,
+      ),
       disabledColor: Colors.black87,
-      hintColor: Color.fromARGB(193, 181, 196, 201),
-      primaryColor: Color.fromARGB(255, 164, 126, 196),
-      scaffoldBackgroundColor: Color.fromARGB(255, 236, 230, 247),
+      hintColor: const Color.fromARGB(193, 181, 196, 201),
+      primaryColor: const Color.fromARGB(255, 164, 126, 196),
+      scaffoldBackgroundColor: kSeaScaffoldBackgroundColor,
       progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color.fromARGB(255, 179, 179, 179)),
       fontFamily: 'Futura',

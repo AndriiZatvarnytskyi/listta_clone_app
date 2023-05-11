@@ -19,11 +19,14 @@ class _NotesScreenState extends State<NotesScreen> {
       child: Builder(builder: (context) {
         return Scaffold(
           extendBody: true,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              NotesWidgetModelProvider.read(context)?.model.showForm(context);
-            },
-            child: const Icon(Icons.add),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(right: 12, bottom: 12),
+            child: FloatingActionButton(
+              onPressed: () {
+                NotesWidgetModelProvider.read(context)?.model.showForm(context);
+              },
+              child: const Icon(Icons.add),
+            ),
           ),
           body: Column(
             children: [

@@ -19,45 +19,50 @@ class _ThemeListState extends State<ThemeList> {
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.read<ThemeCubit>();
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ThemeListTile(
-            firstColor: lightTheme().appBarTheme.color,
-            secondColor: lightTheme().scaffoldBackgroundColor,
-            onTap: () {
-              themeCubit.changeThemeToLight();
-            },
-          ),
-          ThemeListTile(
-            firstColor: darkTheme().appBarTheme.color,
-            secondColor: darkTheme().scaffoldBackgroundColor,
-            onTap: () {
-              themeCubit.changeThemeToDark();
-            },
-          ),
-          ThemeListTile(
-            firstColor: peachTheme().appBarTheme.color,
-            secondColor: peachTheme().scaffoldBackgroundColor,
-            onTap: () {
-              themeCubit.changeThemeToPeach();
-            },
-          ),
-          ThemeListTile(
-            firstColor: seaTheme().appBarTheme.color,
-            secondColor: seaTheme().scaffoldBackgroundColor,
-            onTap: () {
-              themeCubit.changeThemeToSea();
-            },
-          ),
-          ThemeListTile(
-            firstColor: blueTheme().appBarTheme.color,
-            secondColor: blueTheme().scaffoldBackgroundColor,
-            onTap: () {
-              themeCubit.changeThemeToBlue();
-            },
-          ),
-        ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .6,
+      child: SingleChildScrollView(
+        physics: const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+        child: Wrap(
+          direction: Axis.horizontal,
+          children: [
+            ThemeListTile(
+              firstColor: lightTheme().appBarTheme.backgroundColor,
+              secondColor: lightTheme().scaffoldBackgroundColor,
+              onTap: () {
+                themeCubit.changeThemeToLight();
+              },
+            ),
+            ThemeListTile(
+              firstColor: darkTheme().appBarTheme.backgroundColor,
+              secondColor: darkTheme().scaffoldBackgroundColor,
+              onTap: () {
+                themeCubit.changeThemeToDark();
+              },
+            ),
+            ThemeListTile(
+              firstColor: peachTheme().appBarTheme.backgroundColor,
+              secondColor: peachTheme().scaffoldBackgroundColor,
+              onTap: () {
+                themeCubit.changeThemeToPeach();
+              },
+            ),
+            ThemeListTile(
+              firstColor: seaTheme().appBarTheme.backgroundColor,
+              secondColor: seaTheme().scaffoldBackgroundColor,
+              onTap: () {
+                themeCubit.changeThemeToSea();
+              },
+            ),
+            ThemeListTile(
+              firstColor: blueTheme().appBarTheme.backgroundColor,
+              secondColor: blueTheme().scaffoldBackgroundColor,
+              onTap: () {
+                themeCubit.changeThemeToBlue();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

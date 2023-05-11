@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class TaskEditionScreen extends StatelessWidget {
   TaskEditionScreen(
-      {super.key, required this.taskIndex, required this.taskName});
+      {super.key,
+      required this.taskIndex,
+      required this.taskName,
+      required this.settingsPanelController});
+  final PanelController settingsPanelController;
   final int taskIndex;
   final String taskName;
   final TextEditingController controller = TextEditingController();
@@ -22,6 +27,7 @@ class TaskEditionScreen extends StatelessWidget {
                     TasksWidgetModelProvider.read(context)!
                         .model
                         .deleteTask(taskIndex);
+                    settingsPanelController.close();
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.delete_outline))
@@ -65,12 +71,14 @@ class TaskEditionScreen extends StatelessWidget {
                   onChanged: (value) => controller.text = value,
                   onEditingComplete: () {
                     model.nameChange(taskIndex, controller.text);
+                    settingsPanelController.close();
                     Navigator.pop(context);
                   })),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               model.nameChange(taskIndex, controller.text);
               Navigator.pop(context);
+              settingsPanelController.close();
             },
             // NoteFormWidgetModelProvider.read(context)?.model.saveNote(context),
             child: const Icon(Icons.done),
