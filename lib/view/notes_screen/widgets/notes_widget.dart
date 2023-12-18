@@ -25,10 +25,8 @@ class _NotesWidgetBody extends StatelessWidget {
   Widget build(BuildContext context) {
     if (NotesWidgetModelProvider.watch(context)!.model.notes.isNotEmpty) {
       return const NotesListWidget();
-    } else if (NotesWidgetModelProvider.watch(context)!.model.notes.isEmpty) {
-      return const EmptyTaskWidget();
     } else {
-      return const CircularProgressIndicator();
+      return const EmptyTaskWidget();
     }
   }
 }

@@ -23,7 +23,9 @@ class _NotesListWidgetState extends State<NotesListWidget> {
         return NotesListRowWidget(indexInList: index);
       },
       separatorBuilder: (BuildContext context, int index) {
-        return Container(height: 0.5, color: Theme.of(context).hintColor);
+        return const SizedBox(
+          height: 10,
+        );
       },
     );
   }

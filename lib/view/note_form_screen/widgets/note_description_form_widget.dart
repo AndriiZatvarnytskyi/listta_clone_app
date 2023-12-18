@@ -10,7 +10,7 @@ class NoteDescriptionFormWidget extends StatelessWidget {
     return TextField(
       textCapitalization: TextCapitalization.sentences,
       maxLines: 20,
-      style: Theme.of(context).textTheme.headlineMedium,
+      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: 18),
       autofocus: true,
       decoration: InputDecoration(
         border: InputBorder.none,
@@ -18,7 +18,7 @@ class NoteDescriptionFormWidget extends StatelessWidget {
         hintStyle: Theme.of(context)
             .textTheme
             .titleLarge!
-            .copyWith(color: Theme.of(context).hintColor),
+            .copyWith(color: Theme.of(context).hintColor, fontSize: 18),
       ),
       onChanged: (value) => context.read<NoteCubit>().description = value,
     );

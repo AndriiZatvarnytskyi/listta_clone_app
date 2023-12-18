@@ -48,9 +48,14 @@ class _NoteFormScreenBody extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          children: const [
-            NoteNameFormWidget(),
-            Expanded(child: NoteDescriptionFormWidget())
+          children: [
+            const NoteNameFormWidget(),
+            Container(
+              height: 1.5,
+              width: double.infinity,
+              color: Theme.of(context).appBarTheme.backgroundColor,
+            ),
+            const Expanded(child: NoteDescriptionFormWidget())
           ],
         ),
       ),

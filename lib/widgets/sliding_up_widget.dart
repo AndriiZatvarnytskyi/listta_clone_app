@@ -6,7 +6,7 @@ Widget slidingUpWidget(
     required PanelController panelController,
     required double panelHeightOpen,
     required List<Widget> children}) {
-  Widget _panel(ScrollController sc) {
+  Widget panel(ScrollController sc) {
     return MediaQuery.removePadding(
         context: context,
         removeTop: true,
@@ -24,7 +24,7 @@ Widget slidingUpWidget(
     controller: panelController,
     maxHeight: panelHeightOpen,
     minHeight: panelHeightClosed,
-    panelBuilder: (sc) => _panel(sc),
+    panelBuilder: (sc) => panel(sc),
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
   );

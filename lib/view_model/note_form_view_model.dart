@@ -16,7 +16,6 @@ class NoteFormWidgetModel {
     );
     await box.add(note);
     await BoxManager.instance.closeBox(box);
-    Navigator.of(context).pop();
   }
 }
 

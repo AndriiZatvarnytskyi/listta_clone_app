@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:listta_clone_app/domain/entity/task.dart';
-import 'package:listta_clone_app/domain/helper/utils.dart';
 import '../domain/data_provider/box_manager.dart';
 import '../view/task_form_screen/task_form_screen.dart';
 
@@ -30,7 +29,7 @@ class TasksWidgetModel extends ChangeNotifier {
   ) async {
     final box = await BoxManager.instance.openTaskBox();
     final task = Task(
-      notificationTime: DateTime.now().copyWith(hour: 22, minute: 21),
+      notificationTime: DateTime.now(),
       text: taskName,
       isDone: false,
       date: taskDate,

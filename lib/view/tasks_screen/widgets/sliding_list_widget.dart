@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:listta_clone_app/blocs/bloc/sliding_settings_bloc.dart';
 import 'package:listta_clone_app/blocs/task_cubit/task_cubit.dart';
 import 'package:listta_clone_app/blocs/theme_cubit/theme_cubit.dart';
 import 'package:listta_clone_app/notification/noti.dart';
 import 'package:listta_clone_app/view/task_edition_screen/task_edition_screen.dart';
-import 'package:listta_clone_app/view/tasks_screen/widgets/notification_add_widget.dart';
 import 'package:listta_clone_app/view/tasks_screen/widgets/sliding_list_row_widget.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
-import 'package:listta_clone_app/domain/helper/utils.dart';
 
+// ignore: implementation_imports
 import 'package:sliding_up_panel/src/panel.dart';
 
 class SlidingListWidget extends StatefulWidget {

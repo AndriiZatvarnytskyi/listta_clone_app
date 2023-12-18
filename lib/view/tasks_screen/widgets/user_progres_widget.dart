@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/blocs/task_list_bloc/tasks_list_bloc.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 

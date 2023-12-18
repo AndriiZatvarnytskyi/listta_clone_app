@@ -5,7 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:listta_clone_app/blocs/bloc/sliding_settings_bloc.dart';
-import 'package:listta_clone_app/config/theme.dart';
+import 'package:listta_clone_app/blocs/roster_cubit/roster_cubit.dart';
+import 'package:listta_clone_app/domain/entity/roster_element.dart';
 import 'package:listta_clone_app/notification/noti.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +24,9 @@ import 'package:listta_clone_app/config/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Hive.registerAdapter(RosterElementAdapter());
   await Hive.initFlutter();
+
   tz.initializeTimeZones();
   await NotificationService().initNotification();
   SystemChrome.setPreferredOrientations(
@@ -46,6 +49,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => SlidingSettingsBloc()),
         BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => RosterCubit()),
         BlocProvider(create: (_) => NoteCubit()),
         BlocProvider(create: (_) => TaskCubit()),
         BlocProvider(create: (_) => CalendarBloc()),

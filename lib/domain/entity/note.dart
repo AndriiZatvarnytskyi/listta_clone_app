@@ -6,7 +6,7 @@ part 'note.g.dart';
 class Note extends HiveObject {
   @HiveField(0)
   String name;
-    @HiveField(1)
+  @HiveField(1)
   String description;
 
   Note({

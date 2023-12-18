@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/theme_cubit/theme_cubit.dart';
 import 'package:listta_clone_app/config/theme.dart';

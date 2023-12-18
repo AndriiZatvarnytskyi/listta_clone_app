@@ -1,23 +1,12 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:listta_clone_app/view_model/tasks_view_model.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'sliding_settings_event.dart';
 part 'sliding_settings_state.dart';
 
-// class SlidingSettingsBloc
-//     extends Bloc<SlidingSettingsEvent, SlidingSettingsState> {
-//   SlidingSettingsBloc() : super(SlidingSettingsInitial()) {
-//     on<SlidingSettingsEvent>((event, emit) {
-//       // TODO: implement event handler
-//     });
-//   }
-// }
 
 class SlidingSettingsBloc
     extends Bloc<SlidingSettingsEvent, SlidingSettingsState> {
-  SlidingSettingsBloc() : super(SlidingSettingsState()) {
+  SlidingSettingsBloc() : super(const SlidingSettingsState()) {
     on<OpenSettings>(_focusDayChange);
   }
   
@@ -41,8 +30,7 @@ class SlidingSettingsBloc
           ),
         );
       }
-    } catch (error, stacktrace) {
-      print(stacktrace);
+    } catch (error) {
       emit(state.copyWith(status: SlidingSettingsStatus.error));
     }
   }

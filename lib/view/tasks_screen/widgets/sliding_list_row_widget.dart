@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskSettingsListRowWiget extends StatelessWidget {
-  TaskSettingsListRowWiget(
+  const TaskSettingsListRowWiget(
       {super.key,
       required this.icon,
       required this.title,

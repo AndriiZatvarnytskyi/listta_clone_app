@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
-import 'package:listta_clone_app/blocs/theme_cubit/theme_cubit.dart';
+import 'package:listta_clone_app/view/roster_screen/roster_screen.dart';
 import 'package:listta_clone_app/view/notes_screen/notes_screen.dart';
 import 'package:listta_clone_app/view/tasks_screen/tasks_screen.dart';
 import 'package:listta_clone_app/widgets/theme_list.dart';
@@ -92,53 +92,26 @@ class _ScreenViewState extends State<ScreenView> {
           height: 70,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 45),
-                child: Column(
-                  children: [
-                    IconButton(
-                      alignment: Alignment.bottomCenter,
-                      icon: Icon(
-                        Icons.done,
-                        size: 25,
-                        color: _currentPage == 0
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).iconTheme.color,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _myPage.jumpToPage(0);
-                        });
-                      },
-                    ),
-                    Text(
-                      'Завдання',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: _currentPage == 0
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).iconTheme.color),
-                      textAlign: TextAlign.start,
-                    )
-                  ],
+              IconButton(
+                alignment: Alignment.bottomCenter,
+                icon: Icon(
+                  Icons.done,
+                  size: 25,
+                  color: _currentPage == 0
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).iconTheme.color,
                 ),
+                onPressed: () {
+                  setState(() {
+                    _myPage.jumpToPage(0);
+                  });
+                },
               ),
               // Column(
               //   children: [
-              //     IconButton(
-              //       alignment: Alignment.bottomCenter,
-              //       icon:  Icon(
-              //         Icons.calendar_month_outlined,
-              //         size: 25,
-              //color: _myPage.page == 1 ? Theme.of(context).primaryColor : Theme.of(context).disabledColor
-              //       ),
-              //       onPressed: () {
-              //         setState(() {
-              //           _myPage.jumpToPage(1);
-              //         });
-              //       },
-              //     ),
+
               //     Text(
               //       'Події',
               //       style: Theme.of(context)
@@ -150,35 +123,37 @@ class _ScreenViewState extends State<ScreenView> {
               //   ],
               // ),
               Padding(
-                padding: const EdgeInsets.only(right: 45),
-                child: Column(
-                  children: [
-                    IconButton(
-                      alignment: Alignment.bottomCenter,
-                      icon: Icon(
-                        Icons.note_outlined,
-                        size: 25,
-                        color: _currentPage == 1
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).iconTheme.color,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _myPage.jumpToPage(1);
-                        });
-                      },
-                    ),
-                    Text(
-                      'Замітки',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: _currentPage == 1
-                                ? Theme.of(context).primaryColor
-                                : Theme.of(context).iconTheme.color,
-                          ),
-                      textAlign: TextAlign.start,
-                    )
-                  ],
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: IconButton(
+                  alignment: Alignment.bottomCenter,
+                  icon: Icon(
+                    Icons.format_list_bulleted_rounded,
+                    size: 25,
+                    color: _currentPage == 1
+                        ? Theme.of(context).primaryColor
+                        : Theme.of(context).iconTheme.color,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _myPage.jumpToPage(1);
+                    });
+                  },
                 ),
+              ),
+              IconButton(
+                alignment: Alignment.bottomCenter,
+                icon: Icon(
+                  Icons.note_outlined,
+                  size: 25,
+                  color: _currentPage == 2
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).iconTheme.color,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _myPage.jumpToPage(2);
+                  });
+                },
               ),
             ],
           ),
@@ -191,7 +166,8 @@ class _ScreenViewState extends State<ScreenView> {
           physics: const NeverScrollableScrollPhysics(),
           children: const [
             TasksScreen(),
-            NotesScreen()
+            ListScreen(),
+            NotesScreen(),
           ], // Comment this if you need to use Swipe.
         ),
       ),

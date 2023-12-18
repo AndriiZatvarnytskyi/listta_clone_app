@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:listta_clone_app/domain/entity/note.dart';
+import 'package:listta_clone_app/domain/entity/roster.dart';
+import 'package:listta_clone_app/domain/entity/roster_element.dart';
 
 import '../entity/task.dart';
 
@@ -16,6 +18,10 @@ class BoxManager {
 
   Future<Box<Note>> openNoteBox() async {
     return _openBox('note_box', 2, NoteAdapter());
+  }
+
+  Future<Box<Roster>> openRosterBox() async {
+    return _openBox('roster_box', 3, RosterAdapter());
   }
 
   Future<void> closeBox<T>(Box<T> box) async {

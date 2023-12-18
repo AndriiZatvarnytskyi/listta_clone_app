@@ -33,7 +33,7 @@ class _TasksListWidgetState extends State<TasksListWidget> {
         return task.isNotEmpty
             ? Column(
                 children: [
-                  ListView.builder(
+                  ListView.separated(
                     physics: const ScrollPhysics(
                         parent: NeverScrollableScrollPhysics()),
                     shrinkWrap: true,
@@ -47,6 +47,11 @@ class _TasksListWidgetState extends State<TasksListWidget> {
                         indexInList: index,
                         tasks: task,
                         date: state.taskDate,
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 10,
                       );
                     },
                   ),
@@ -68,6 +73,9 @@ class _TasksListWidgetState extends State<TasksListWidget> {
                   //     );
                   //   },
                   // ),
+                  SizedBox(
+                    height: 15,
+                  )
                 ],
               )
             : const EmptyTaskWidget();

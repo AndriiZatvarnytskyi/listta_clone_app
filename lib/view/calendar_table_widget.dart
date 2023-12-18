@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:listta_clone_app/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:listta_clone_app/blocs/task_list_bloc/tasks_list_bloc.dart';
-import 'package:listta_clone_app/domain/entity/task.dart';
 import 'package:listta_clone_app/domain/helper/utils.dart';
 import 'package:listta_clone_app/view_model/tasks_view_model.dart';
 import 'package:table_calendar/table_calendar.dart';

@@ -9,11 +9,10 @@ class NoteNameFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
         textCapitalization: TextCapitalization.sentences,
-        maxLength: 25,
         style: Theme.of(context)
             .textTheme
             .headlineMedium!
-            .copyWith(fontWeight: FontWeight.w500, fontSize: 18),
+            .copyWith(fontWeight: FontWeight.w500, fontSize: 24),
         autofocus: true,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -21,7 +20,7 @@ class NoteNameFormWidget extends StatelessWidget {
           hintStyle: Theme.of(context)
               .textTheme
               .displaySmall!
-              .copyWith(color: Theme.of(context).hintColor),
+              .copyWith(color: Theme.of(context).hintColor, fontSize: 24),
         ),
         onChanged: (value) => context.read<NoteCubit>().noteName = value,
         onEditingComplete: () {

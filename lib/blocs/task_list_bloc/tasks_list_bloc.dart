@@ -18,8 +18,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
           taskDate: event.taskDate,
         ),
       );
-    } catch (error, stacktrace) {
-      print(stacktrace);
+    } catch (error) {
       emit(state.copyWith(status: TaskListStatus.error));
     }
   }

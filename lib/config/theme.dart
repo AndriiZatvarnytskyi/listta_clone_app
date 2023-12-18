@@ -4,7 +4,7 @@ import 'package:listta_clone_app/config/constants.dart';
 ThemeData lightTheme() {
   return ThemeData(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 240, 240, 240),
           foregroundColor: Colors.black87,
           elevation: 3),
       elevatedButtonTheme: const ElevatedButtonThemeData(
@@ -109,7 +109,7 @@ ThemeData peachTheme() {
         color: Color.fromARGB(186, 255, 255, 255),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Color.fromARGB(255, 221, 160, 140),
           foregroundColor: kPeachThemeTextColor,
           elevation: 3),
       elevatedButtonTheme: const ElevatedButtonThemeData(
@@ -212,7 +212,7 @@ ThemeData blueTheme() {
         color: Color.fromARGB(186, 255, 255, 255),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromARGB(159, 140, 178, 221),
+          backgroundColor: Color.fromARGB(255, 140, 182, 221),
           foregroundColor: kBlueThemeTextColor,
           elevation: 3),
       timePickerTheme: const TimePickerThemeData(
@@ -315,7 +315,7 @@ ThemeData seaTheme() {
         color: Color.fromARGB(255, 240, 239, 239),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: Color.fromARGB(255, 175, 224, 212),
           foregroundColor: kSeaThemeTextColor,
           elevation: 3),
       elevatedButtonTheme: const ElevatedButtonThemeData(
@@ -415,8 +415,15 @@ ThemeData seaTheme() {
 ThemeData darkTheme() {
   return ThemeData.dark().copyWith(
       primaryColor: kPrimaryColor,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: kPrimaryColor,
+          foregroundColor: Colors.black87,
+          elevation: 3),
       scaffoldBackgroundColor: kContentColorLightTheme,
       hintColor: Colors.white38,
+      navigationBarTheme: const NavigationBarThemeData(
+        backgroundColor: kAppBarColor,
+      ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
